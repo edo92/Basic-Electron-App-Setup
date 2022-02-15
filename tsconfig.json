@@ -1,0 +1,21 @@
+{
+   "compilerOptions": {
+      "target": "es2021",
+      "module": "commonjs",
+      "lib": ["dom", "esnext"],
+      "allowJs": true,
+      "jsx": "react",
+      "sourceMap": true,
+      "baseUrl": ".",
+      "outDir": "./dist",
+      "rootDir": "./src",
+      "strict": true,
+      "esModuleInterop": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true,
+      "allowSyntheticDefaultImports": true
+   },
+   "include": ["./src/**/*"],
+   "files": ["./src/types/global.d.ts"]
+}

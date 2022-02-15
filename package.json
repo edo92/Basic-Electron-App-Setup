@@ -1,0 +1,69 @@
+{
+    "name": "basic_electron_app_setup",
+    "description": "Electron application setup",
+    "version": "1.0.0",
+    "private": true,
+    "main": "./dist/main.js",
+    "author": "Eduard Jacobs",
+    "scripts": {
+        "dev": "npm-run-all -p dev:react electron:serve",
+        "dev:electron": "cross-env NODE_ENV=development webpack --config webpack/electron.webpack.ts --mode=development && npm run start:electron",
+        "dev:react": "cross-env NODE_ENV=development webpack serve --config webpack/react.webpack.ts --mode=development",
+        "electron:serve": "wait-on http-get://localhost:4000/ && npm run dev:electron",
+        "start:electron": "electron .",
+        "build": "npm-run-all build:electron build:react",
+        "build:run": "npm-run-all build start:electron",
+        "build:electron": "webpack --config webpack/electron.webpack.ts --mode=production",
+        "build:react": "webpack --config webpack/react.webpack.ts --mode=production",
+        "package": "npm-run-all build package:dist",
+        "package:dist": "electron-builder --dir"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.17",
+        "@types/react": "^17.0.39",
+        "@types/react-dom": "^17.0.11",
+        "@types/webpack-dev-server": "^4.7.2",
+        "@typescript-eslint/eslint-plugin": "^5.11.0",
+        "@typescript-eslint/parser": "^5.11.0",
+        "cross-env": "^7.0.3",
+        "css-loader": "^6.6.0",
+        "eslint": "^8.9.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.28.0",
+        "html-webpack-plugin": "^5.5.0",
+        "prettier": "^2.5.1",
+        "style-loader": "^3.3.1",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.5.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.68.0",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.7.4"
+    },
+    "dependencies": {
+        "electron": "^17.0.0",
+        "electron-builder": "^22.14.13",
+        "npm-run-all": "^4.1.5",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "wait-on": "^6.0.1"
+    },
+    "build": {
+        "appId": "com.company.app",
+        "productName": "App Name",
+        "mac": {
+            "category": "public.app-category.video"
+        },
+        "directories": {
+            "output": "packages"
+        },
+        "files": [
+            "package.json",
+            "dist/**"
+        ]
+    },
+    "engines": {
+        "npm": ">=7.0.0",
+        "node": ">=16.13.0"
+    }
+}
